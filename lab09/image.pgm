@@ -1,0 +1,123 @@
+[?1049h[22;0;0t[>4;2m[?1h=[?2004h[?1004h[1;60r[?12h[?12l[22;2t[22;1t[27m[23m[29m[m[H[2J[?25l[60;1H[1m[37m[41mE325: ATTENTION[m
+Found a swap file by the name ".plotz2_pt1.c.swp"
+[10Cowned by: a.vargasescobar   dated: Wed Mar 27 16:43:39 2024
+[9Cfile name: ~a.vargasescobar/cpts360/lab09/plotz2_pt1.c
+[10Cmodified: no
+[9Cuser name: a.vargasescobar   host name: elec.tricity.wsu.edu
+[8Cprocess ID: 322554 (STILL RUNNING)
+While opening file "plotz2_pt1.c"
+[13Cdated: Wed Mar 27 16:42:42 2024
+
+(1) Another program may be editing the same file.  If this is the case,
+    be careful not to end up with two different instances of the same
+    file when making changes.  Quit, or continue with caution.
+(2) An edit session for this file crashed.
+    If this is the case, use ":recover" or "vim -r plotz2_pt1.c"
+    to recover the changes (see ":help recovery").
+    If you did this already, delete the swap file ".plotz2_pt1.c.swp"
+    to avoid this message.
+
+[32mSwap file ".plotz2_pt1.c.swp" already exists![m
+[32m[O]pen Read-Only, (E)dit anyway, (R)ecover, (Q)uit, (A)bort: [?25h[m[60;1H[K[?25l[60;1H"plotz2_pt1.c" 152L, 4334B[1;1H[34m     * output:
+     *    z -- N_PIXEL_1D x N_PIXEL_1D array of values of f
+     *         evaluated over [ -[m[31m1[m[34m, [m[31m1[m[34m ] x [ -[m[31m1[m[34m, [m[31m1[m[34m ]. z[[m[31m0[m[34m][[m[31m0[m[34m]
+     *         corresponds to the upper left corner (x, y) = (-[m[31m1[m[34m, [m[31m1[m[34m).
+     *
+     * This function evaluates an N_PIXEL_1D x N_PIXEL_1D grid that
+     * fits into a [m[31m2[m[34m x [m[31m2[m[34m square centered on the origin.
+     */[m
+    [32mdouble[m x, dx, y, dy;
+    [32mint[m i, j;[12;5Hdx = [31m2.0[m / (N_PIXEL_1D - [31m1[m);
+    dy = [31m2.0[m / (N_PIXEL_1D - [31m1[m);
+    [33mfor[m (i = [31m0[m; i < N_PIXEL_1D; i++) {[15;9Hy = [31m1.0[m - dy * i;[16;9H[33mfor[m (j = [31m0[m; j < N_PIXEL_1D; j++) {[17;13Hx = dx * j - [31m1.0[m;[18;13Hz[i][j] = (*f_p)(x, y);[19;9H}
+    }
+}
+
+[32mdouble[m hemisphere([32mdouble[m x, [32mdouble[m y)
+[34m/* return the height of a unit hemisphere or [m[31m0[m[34m if (x,y) lies outside */[m
+{
+    [32mdouble[m rSqrd = [31m1.0[m - x*x - y*y;
+    [33mif[m (rSqrd > [31m0[m)[28;9H[33mreturn[m sqrt(rSqrd);
+    [33mreturn[m [31m0.0[m;
+}
+
+[32mdouble[m ripple([32mdouble[m x, [32mdouble[m y)
+[34m/* return a radial, exponentially-damped cosine, or [m[31m"ripple"[m[34m */[m
+{
+    [32mdouble[m r = sqrt(x*x + y*y);
+    [33mreturn[m exp(-[31m2[m*r) * cos([31m20[m*r);
+}
+
+[34m/*
+ * Add your own function here, if you wish. Be creative!
+ */[m[41;4H[K[42;11H[K[43;1H[32mint[m main([32mint[m arg[?1049h[22;0;0t[>4;2m[?1h=[?2004h[?1004h[?12h[?12l[27m[23m[29m[m[H[2J[?25l[1;1H[34m     * output:
+     *    z -- N_PIXEL_1D x N_PIXEL_1D array of values of f
+     *         evaluated over [ -[m[31m1[m[34m, [m[31m1[m[34m ] x [ -[m[31m1[m[34m, [m[31m1[m[34m ]. z[[m[31m0[m[34m][[m[31m0[m[34m]
+     *         corresponds to the upper left corner (x, y) = (-[m[31m1[m[34m, [m[31m1[m[34m).
+     *
+     * This function evaluates an N_PIXEL_1D x N_PIXEL_1D grid that
+     * fits into a [m[31m2[m[34m x [m[31m2[m[34m square centered on the origin.
+     */[m
+    [32mdouble[m x, dx, y, dy;
+    [32mint[m i, j;[12;5Hdx = [31m2.0[m / (N_PIXEL_1D - [31m1[m);
+    dy = [31m2.0[m / (N_PIXEL_1D - [31m1[m);
+    [33mfor[m (i = [31m0[m; i < N_PIXEL_1D; i++) {[15;9Hy = [31m1.0[m - dy * i;[16;9H[33mfor[m (j = [31m0[m; j < N_PIXEL_1D; j++) {[17;13Hx = dx * j - [31m1.0[m;[18;13Hz[i][j] = (*f_p)(x, y);[19;9H}
+    }
+}
+
+[32mdouble[m hemisphere([32mdouble[m x, [32mdouble[m y)
+[34m/* return the height of a unit hemisphere or [m[31m0[m[34m if (x,y) lies outside */[m
+{
+    [32mdouble[m rSqrd = [31m1.0[m - x*x - y*y;
+    [33mif[m (rSqrd > [31m0[m)[28;9H[33mreturn[m sqrt(rSqrd);
+    [33mreturn[m [31m0.0[m;
+}
+[?12h[?12l[27m[23m[29m[m[H[2J[?25l[1;1H[34m     *    z -- N_PIXEL_1D x N_PIXEL_1D array of values of f
+     *         evaluated over [ -[m[31m1[m[34m, [m[31m1[m[34m ] x [ -[m[31m1[m[34m, [m[31m1[m[34m ]. z[[m[31m0[m[34m][[m[31m0[m[34m]
+     *         corresponds to the upper left corner (x, y) = (-[m[31m1[m[34m, [m[31m1[m[34m).
+     *
+     * This function evaluates an N_PIXEL_1D x N_PIXEL_1D grid that
+     * fits into a [m[31m2[m[34m x [m[31m2[m[34m square centered on the origin.
+     */[m
+    [32mdouble[m x, dx, y, dy;
+    [32mint[m i, j;[11;5Hdx = [31m2.0[m / (N_PIXEL_1D - [31m1[m);
+    dy = [31m2.0[m / (N_PIXEL_1D - [m[31m"hemisphere"[m[34m, try [m[31m"ripple"[m[34m or your own function's
+[m    [34m// name.[m
+    sampleFunction(hemisphere, z);[56;5HprintSquarePgm(z);[58;5H[33mreturn[m [31m0[m;
+[46m}[m[60;189H152,1[9CBot[59;1H[?25h[?25l[?25h
+[?1004l[?2004l[?1l>[>4;m[?1049l[23;0;0tVim: Caught deadly signal HUP
+Vim: Finished.
+[60;1H[23;2t[23;1tif (x,y) lies outside */[m
+{
+    [32mdouble[m rSqrd = [31m1.0[m - x*x - y*y;
+    [33mif[m (rSqrd > [31m0[m)[27;9H[33mreturn[m sqrt(rSqrd);
+    [33mreturn[m [31m0.0[m;
+}
+
+[32mdouble[m ripple([32mdouble[m x, [32mdouble[m y)
+[34m/* return a radial, exponentially-damped cosine, or [m[31m"ripple"[m[34m */[m
+{
+    [32mdouble[m r = sqrt(x*x + y*y);
+    [33mreturn[m exp(-[31m2[m*r) * cos([31m20[m*r);
+}
+
+[34m/*
+ * Add your own function here, if you wish. Be creative!
+ */[m
+
+[32mint[m main([32mint[m argc, [32mchar[m *argv[])
+{
+    [34m/*
+     * Windows won't let us declare local (i.e. stack) variables this
+     * large (Linux will -- so there!), so we need to declare them
+     * static (i.e. global) for portability.
+     */[m
+    [32mstatic[m [32mdouble[m z[N_PIXEL_1D][N_PIXEL_1D];[51;5H[34m// Instead of [m[31m"hemisphere"[m[34m, try [m[31m"ripple"[m[34m or your own function's
+[m    [34m// name.[m
+    sampleFunction(hemisphere, z);[55;5HprintSquarePgm(z);[57;5H[33mreturn[m [31m0[m;
+}
+g[34m^Z[m[60;189H153,2[9CBot[59;2H[?25h[?25l[?25h
+[?1004l[?2004l[?1l>[>4;m[?1049l[23;0;0tVim: Caught deadly signal HUP
+Vim: preserving files...
+Vim: Finished.
+[60;1H[23;2t[23;1t

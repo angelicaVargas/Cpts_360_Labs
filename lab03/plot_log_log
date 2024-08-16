@@ -1,0 +1,26 @@
+#! /bin/sh
+
+case $# in
+1) dataFile=$1; imageFile="";;
+2) dataFile=$1; imageFile=$2;;
+*) echo "syntax: dataFile imageFile" 1>&2; exit;;
+esac
+
+if [ "$imageFile" = "" ]
+then 
+gnuplot -persist <<EOF
+set log xy
+set xlabel "buffer size (bytes)"
+set ylabel "time (sec)"
+plot "$dataFile" with lines
+EOF
+else
+gnuplot <<EOF
+set terminal png
+set log xy
+set xlabel "buffer size (bytes)"
+set ylabel "time (sec)"
+set output "$imageFile"
+plot "$dataFile" with lines
+EOF
+fi
